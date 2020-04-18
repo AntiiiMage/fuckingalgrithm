@@ -1,7 +1,8 @@
-package xuz.play.algrithm;
+package xuz.play.algrithm.codility;
 
 import org.junit.Assert;
 import org.junit.Test;
+import xuz.play.algrithm.codility.CalculateParticleStablePeriod;
 
 /**
  * Created by XuMac on Apr1820.

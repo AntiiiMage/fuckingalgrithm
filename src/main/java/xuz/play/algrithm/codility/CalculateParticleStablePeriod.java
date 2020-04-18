@@ -1,4 +1,4 @@
-package xuz.play.algrithm;
+package xuz.play.algrithm.codility;
 
 /**
  * Created by XuMac on Apr1820.
