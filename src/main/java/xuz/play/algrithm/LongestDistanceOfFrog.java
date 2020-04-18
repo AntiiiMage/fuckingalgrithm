@@ -12,6 +12,8 @@ package xuz.play.algrithm;
 // height as the first What is the longest distance that thay can possibly create between each other, if
 // they also chose to sit on the optimal startging block initially?
 
+//    You need to find the longest decreasing then increasing subseqence (using consecutive terms) in the sequence
+
 /*  Example 1:
     given blocks = [2,6,8,5] -> return 3,
     if starting from blocks[0], the first frog can stay where it is and the second frog can jump to blocks[2](but not blocks[3])
@@ -25,8 +27,33 @@ package xuz.play.algrithm;
     If starting from blocks[1] , the first frog can jump to blocks[0] and the second frog cn stay where it it, Starting from blocks[0] would result in the same distance.
 */
 
+/* https://leetcode.com/discuss/interview-question/530658/Longest-distance-problem */
 
 public class LongestDistanceOfFrog {
+
+
+    public int resolveDistance2(int[] blocks) {
+        int n = blocks.length;
+        if (n < 2) return n;
+
+        int i, ans = 1, len = 1, dec = 1;
+        for (i = 1; i < n; i++) {
+
+            if (blocks[i] >= blocks[i - 1]) {
+                len++;
+            }
+            ans = max(ans, len);
+
+            if (blocks[i] > blocks[i - 1]) {
+                dec = 1;
+            } else {
+                dec++;
+                if (blocks[i] < blocks[i - 1]) len = dec;
+            }
+            ans = max(ans, dec);
+        }
+        return ans;
+    }
 
     public int resolveDistance1(int[] blocks) {
         int[] leftMaxArray = new int[blocks.length];

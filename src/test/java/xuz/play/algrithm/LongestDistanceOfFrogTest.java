@@ -21,13 +21,17 @@ public class LongestDistanceOfFrogTest {
         ans = longestDistanceOfFrog.resolveDistance1(blocks);
         Assert.assertEquals(5, ans);
 
+        blocks = new int[]{4, 3, 2, 1, 2, 3};
+        ans = longestDistanceOfFrog.resolveDistance2(blocks);
+        Assert.assertEquals(6, ans);
+
         blocks = new int[]{1, 1, 1};
         ans = longestDistanceOfFrog.resolveDistance1(blocks);
         Assert.assertEquals(3, ans);
 
         blocks = new int[]{1};
         ans = longestDistanceOfFrog.resolveDistance1(blocks);
-        Assert.assertEquals(0, ans);
+        Assert.assertEquals(1, ans);
     }
 
 }
