@@ -36,30 +36,43 @@ public class LongestDistanceOfFrog {
         int n = blocks.length;
         if (n < 2) return n;
 
-        int i, ans = 1, len = 1, dec = 1;
-        for (i = 1; i < n; i++) {
+        // to find the maximum length of the subsequence that first down(stable) then up(stable)
+        int ans = 1;
+        int maxDistance = 1;
+        int downDistance = 1;
+        for (int i = 1; i < n; i++) {
 
             if (blocks[i] >= blocks[i - 1]) {
-                len++;
+                maxDistance++;
             }
-            ans = max(ans, len);
+            ans = max(ans, maxDistance);
 
             if (blocks[i] > blocks[i - 1]) {
-                dec = 1;
+                // reset down distance as 1
+                downDistance = 1;
             } else {
-                dec++;
-                if (blocks[i] < blocks[i - 1]) len = dec;
+                // downing or stable
+                downDistance++;
+
+                // downing, reset the maxdistance
+                if (blocks[i] < blocks[i - 1]) {
+                    maxDistance = downDistance;
+                }
             }
-            ans = max(ans, dec);
+            ans = max(ans, downDistance);
         }
         return ans;
     }
 
     public int resolveDistance1(int[] blocks) {
+        // leftMaxArray[i] means the left maximum upping/stable length from blocks[i]
         int[] leftMaxArray = new int[blocks.length];
+
+        // rightMaxArray[i] means the right maximum upping/stable length from blocks[i]
         int[] rightMaxArray = new int[blocks.length];
 
 
+        // caculate the rightMaxArray
         int left = 0;
         int rightMax = 0;
         while (left < blocks.length) {
@@ -73,11 +86,11 @@ public class LongestDistanceOfFrog {
 
         }
 
+        // caculate the leftMaxArray
         int right = blocks.length - 1;
         int leftMax = 0;
-
         while (right >= 0) {
-            if (right > 0 && blocks[right - 1] <= blocks[right]) {
+            if (right > 0 && blocks[right - 1] >= blocks[right]) {
                 leftMax++;
             } else {
                 updateLeftMaxArray(leftMaxArray, right, leftMax);
@@ -87,6 +100,7 @@ public class LongestDistanceOfFrog {
 
         }
 
+        // calculate the max from index 0 to n
         int result = 0;
         for (int i = 0; i < blocks.length; i++) {
             result = max(result, leftMaxArray[i] + rightMaxArray[i]);

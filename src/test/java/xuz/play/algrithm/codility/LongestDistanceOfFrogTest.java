@@ -14,12 +14,17 @@ public class LongestDistanceOfFrogTest {
     @Test
     public void testMethod1(){
 
-        int[] blocks = new int[]{1, 2, 5, 10, 8};
+        int[] blocks = new int[]{1, 5, 5, 2, 6};
         int ans = longestDistanceOfFrog.resolveDistance1(blocks);
         Assert.assertEquals(4, ans);
 
+
+//        int[] blocks = new int[]{1, 2, 5, 10, 8};
+//        int ans = longestDistanceOfFrog.resolveDistance2(blocks);
+//        Assert.assertEquals(4, ans);
+
         blocks = new int[]{1, 2, 5, 10, 10, 8};
-        ans = longestDistanceOfFrog.resolveDistance1(blocks);
+        ans = longestDistanceOfFrog.resolveDistance2(blocks);
         Assert.assertEquals(5, ans);
 
         blocks = new int[]{4, 3, 2, 1, 2, 3};
@@ -27,11 +32,11 @@ public class LongestDistanceOfFrogTest {
         Assert.assertEquals(6, ans);
 
         blocks = new int[]{1, 1, 1};
-        ans = longestDistanceOfFrog.resolveDistance1(blocks);
+        ans = longestDistanceOfFrog.resolveDistance2(blocks);
         Assert.assertEquals(3, ans);
 
         blocks = new int[]{1};
-        ans = longestDistanceOfFrog.resolveDistance1(blocks);
+        ans = longestDistanceOfFrog.resolveDistance2(blocks);
         Assert.assertEquals(1, ans);
     }
 
